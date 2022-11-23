@@ -1,0 +1,425 @@
+rm -rf p36 p63 pz3 p3z pzg pzh pzm pzn pzw a.out *.dSYM
+Compiling code:
+
+Running code:
+running pzn on bald-eagle.pz
+
+running pzg on bald-eagle.pz
+
+running pzw on bald-eagle.pz
+
+running pzh on bald-eagle.pz
+
+running pzm on bald-eagle.pz
+
+running pzn on pelicans.pz
+
+running pzg on pelicans.pz
+
+running pzw on pelicans.pz
+
+running pzh on pelicans.pz
+
+running pzm on pelicans.pz
+
+running pzn on wide-pz-wide.pz
+
+running pzg on wide-pz-wide.pz
+
+running pzw on wide-pz-wide.pz
+
+running pzh on wide-pz-wide.pz
+
+running pzm on wide-pz-wide.pz
+
+running pzn on tall-pz-a-tall-image.pz
+
+running pzg on tall-pz-a-tall-image.pz
+
+running pzw on tall-pz-a-tall-image.pz
+
+running pzh on tall-pz-a-tall-image.pz
+
+running pzm on tall-pz-a-tall-image.pz
+
+running pzn on two-gray-pz.pz
+
+running pzg on two-gray-pz.pz
+
+running pzw on two-gray-pz.pz
+
+running pzh on two-gray-pz.pz
+
+running pzm on two-gray-pz.pz
+
+running pzn on leaf-pz.pz
+
+running pzg on leaf-pz.pz
+
+running pzw on leaf-pz.pz
+
+running pzh on leaf-pz.pz
+
+running pzm on leaf-pz.pz
+
+running pzn on two-color-pz.pz
+
+running pzg on two-color-pz.pz
+
+running pzw on two-color-pz.pz
+
+running pzh on two-color-pz.pz
+
+running pzm on two-color-pz.pz
+
+running pzn on robin-grayscale.pz
+
+running pzg on robin-grayscale.pz
+
+running pzw on robin-grayscale.pz
+
+running pzh on robin-grayscale.pz
+
+running pzm on robin-grayscale.pz
+
+running pzn on tall-pz.pz
+
+running pzg on tall-pz.pz
+
+running pzw on tall-pz.pz
+
+running pzh on tall-pz.pz
+
+running pzm on tall-pz.pz
+
+running pzn on wide-pz.pz
+
+running pzg on wide-pz.pz
+
+running pzw on wide-pz.pz
+
+running pzh on wide-pz.pz
+
+running pzm on wide-pz.pz
+
+
+Running transformation tests:
+  Comparing: pzh-leaf-pz.pz and proj2-test-output/student-pzh-leaf-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: leaves on branch (flipped horizontally)
+
+  Comparing: pzg-two-gray-pz.pz and proj2-test-output/student-pzg-two-gray-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (grayscale)
+
+  Comparing: pzw-bald-eagle.pz and proj2-test-output/student-pzw-bald-eagle.pz
+    Time: 1432
+    Date: 20220320
+    Description: bald eagle, Feb 2022, Starved Rock, IL (widened*2)
+
+  Comparing: pzn-tall-pz.pz and proj2-test-output/student-pzn-tall-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (negative)
+
+  Comparing: pzw-wide-pz.pz and proj2-test-output/student-pzw-wide-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (widened*2)
+
+  Comparing: pzh-two-gray-pz.pz and proj2-test-output/student-pzh-two-gray-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (flipped horizontally)
+
+  Comparing: pzw-two-color-pz.pz and proj2-test-output/student-pzw-two-color-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (widened*2)
+
+  Comparing: pzn-tall-pz-a-tall-image.pz and proj2-test-output/student-pzn-tall-pz-a-tall-image.pz
+    Time: 1432
+    Date: 20220320
+    Description: a tall image (negative)
+
+  Comparing: pzn-two-gray-pz.pz and proj2-test-output/student-pzn-two-gray-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (negative)
+
+  Comparing: pzw-wide-pz-wide.pz and proj2-test-output/student-pzw-wide-pz-wide.pz
+    Time: 1432
+    Date: 20220320
+    Description: wide (widened*2)
+
+  Comparing: pzw-tall-pz-a-tall-image.pz and proj2-test-output/student-pzw-tall-pz-a-tall-image.pz
+    Time: 1432
+    Date: 20220320
+    Description: a tall image (widened*2)
+
+  Comparing: pzg-robin-grayscale.pz and proj2-test-output/student-pzg-robin-grayscale.pz
+    Time: 1432
+    Date: 20220320
+    Description: singing robin among trees and leaves (grayscale) (grayscale)
+
+  Comparing: pzg-leaf-pz.pz and proj2-test-output/student-pzg-leaf-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: leaves on branch (grayscale)
+
+  Comparing: pzn-wide-pz.pz and proj2-test-output/student-pzn-wide-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (negative)
+
+  Comparing: pzh-bald-eagle.pz and proj2-test-output/student-pzh-bald-eagle.pz
+    Time: 1432
+    Date: 20220320
+    Description: bald eagle, Feb 2022, Starved Rock, IL (flipped horizontally)
+
+  Comparing: pzw-tall-pz.pz and proj2-test-output/student-pzw-tall-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (widened*2)
+
+  Comparing: pzg-tall-pz.pz and proj2-test-output/student-pzg-tall-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (grayscale)
+
+  Comparing: pzh-robin-grayscale.pz and proj2-test-output/student-pzh-robin-grayscale.pz
+    Time: 1432
+    Date: 20220320
+    Description: singing robin among trees and leaves (grayscale) (flipped horizontally)
+
+  Comparing: pzg-wide-pz-wide.pz and proj2-test-output/student-pzg-wide-pz-wide.pz
+    Time: 1432
+    Date: 20220320
+    Description: wide (grayscale)
+
+  Comparing: pzn-two-color-pz.pz and proj2-test-output/student-pzn-two-color-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (negative)
+
+  Comparing: pzg-pelicans.pz and proj2-test-output/student-pzg-pelicans.pz
+    Time: 1432
+    Date: 20220320
+    Description: a pair of pelicans (grayscale)
+
+  Comparing: pzw-leaf-pz.pz and proj2-test-output/student-pzw-leaf-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: leaves on branch (widened*2)
+
+  Comparing: pzw-two-gray-pz.pz and proj2-test-output/student-pzw-two-gray-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (widened*2)
+
+  Comparing: pzn-pelicans.pz and proj2-test-output/student-pzn-pelicans.pz
+    Time: 1432
+    Date: 20220320
+    Description: a pair of pelicans (negative)
+
+  Comparing: pzn-bald-eagle.pz and proj2-test-output/student-pzn-bald-eagle.pz
+    Time: 1432
+    Date: 20220320
+    Description: bald eagle, Feb 2022, Starved Rock, IL (negative)
+
+  Comparing: pzh-wide-pz-wide.pz and proj2-test-output/student-pzh-wide-pz-wide.pz
+    Time: 1432
+    Date: 20220320
+    Description: wide (flipped horizontally)
+
+  Comparing: pzh-wide-pz.pz and proj2-test-output/student-pzh-wide-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (flipped horizontally)
+
+  Comparing: pzw-robin-grayscale.pz and proj2-test-output/student-pzw-robin-grayscale.pz
+    Time: 1432
+    Date: 20220320
+    Description: singing robin among trees and leaves (grayscale) (widened*2)
+
+  Comparing: pzh-tall-pz.pz and proj2-test-output/student-pzh-tall-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (flipped horizontally)
+
+  Comparing: pzn-leaf-pz.pz and proj2-test-output/student-pzn-leaf-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: leaves on branch (negative)
+
+  Comparing: pzn-wide-pz-wide.pz and proj2-test-output/student-pzn-wide-pz-wide.pz
+    Time: 1432
+    Date: 20220320
+    Description: wide (negative)
+
+  Comparing: pzg-two-color-pz.pz and proj2-test-output/student-pzg-two-color-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (grayscale)
+
+  Comparing: pzg-wide-pz.pz and proj2-test-output/student-pzg-wide-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (grayscale)
+
+  Comparing: pzg-bald-eagle.pz and proj2-test-output/student-pzg-bald-eagle.pz
+    Time: 1432
+    Date: 20220320
+    Description: bald eagle, Feb 2022, Starved Rock, IL (grayscale)
+
+  Comparing: pzg-tall-pz-a-tall-image.pz and proj2-test-output/student-pzg-tall-pz-a-tall-image.pz
+    Time: 1432
+    Date: 20220320
+    Description: a tall image (grayscale)
+
+  Comparing: pzw-pelicans.pz and proj2-test-output/student-pzw-pelicans.pz
+    Time: 1432
+    Date: 20220320
+    Description: a pair of pelicans (widened*2)
+
+  Comparing: pzh-two-color-pz.pz and proj2-test-output/student-pzh-two-color-pz.pz
+    Time: 1432
+    Date: 20220320
+    Description: [image] (flipped horizontally)
+
+  Comparing: pzh-tall-pz-a-tall-image.pz and proj2-test-output/student-pzh-tall-pz-a-tall-image.pz
+    Time: 1432
+    Date: 20220320
+    Description: a tall image (flipped horizontally)
+
+  Comparing: pzh-pelicans.pz and proj2-test-output/student-pzh-pelicans.pz
+    Time: 1432
+    Date: 20220320
+    Description: a pair of pelicans (flipped horizontally)
+
+  Comparing: pzn-robin-grayscale.pz and proj2-test-output/student-pzn-robin-grayscale.pz
+    Time: 1432
+    Date: 20220320
+    Description: singing robin among trees and leaves (grayscale) (negative)
+
+Running JSON tests:
+  Comparing: json/wide-pz.json and proj2-test-output/student-wide-pz.json
+    Same!
+
+  Comparing: json/robin-grayscale.json and proj2-test-output/student-robin-grayscale.json
+    Same!
+
+  Comparing: json/two-color-pz.json and proj2-test-output/student-two-color-pz.json
+    Same!
+
+  Comparing: json/wide-pz-wide.json and proj2-test-output/student-wide-pz-wide.json
+    Same!
+
+  Comparing: json/bald-eagle.json and proj2-test-output/student-bald-eagle.json
+    Same!
+
+  Comparing: json/tall-pz.json and proj2-test-output/student-tall-pz.json
+    Same!
+
+  Comparing: json/tall-pz-a-tall-image.json and proj2-test-output/student-tall-pz-a-tall-image.json
+    Same!
+
+  Comparing: json/pelicans.json and proj2-test-output/student-pelicans.json
+    Same!
+
+  Comparing: json/two-gray-pz.json and proj2-test-output/student-two-gray-pz.json
+    Same!
+
+  Comparing: json/leaf-pz.json and proj2-test-output/student-leaf-pz.json
+    Same!
+
+
+PROJECT 2 REPORT (kkhabaz):
+
+  Ran each tool on 10 images (small and large, color and grayscale).
+  Please see output above for more details.
+  50 points for code that compiles. 
+  Each transformation test is worth 1 point.
+
+Code compiles:
+  pzn:                      10.000
+  pzg:                      10.000
+  pzw:                      10.000
+  pzh:                      10.000
+  pzm:                      10.000
+
+  TOTAL compilation: 50.000/50.000
+
+pzn:
+  bald-eagle.pz:            1.000
+  pelicans.pz:              1.000
+  wide-pz-wide.pz:          1.000
+  tall-pz-a-tall-image.pz:  1.000
+  two-gray-pz.pz:           1.000
+  leaf-pz.pz:               1.000
+  two-color-pz.pz:          1.000
+  robin-grayscale.pz:       1.000
+  tall-pz.pz:               1.000
+  wide-pz.pz:               1.000
+
+  TOTAL pzn:        10.000/10.000
+
+pzg:
+  bald-eagle.pz:            1.000
+  pelicans.pz:              1.000
+  wide-pz-wide.pz:          1.000
+  tall-pz-a-tall-image.pz:  1.000
+  two-gray-pz.pz:           1.000
+  leaf-pz.pz:               1.000
+  two-color-pz.pz:          1.000
+  robin-grayscale.pz:       1.000
+  tall-pz.pz:               1.000
+  wide-pz.pz:               1.000
+
+  TOTAL pzg:        10.000/10.000
+
+pzw:
+  bald-eagle.pz:            1.000
+  pelicans.pz:              1.000
+  wide-pz-wide.pz:          1.000
+  tall-pz-a-tall-image.pz:  1.000
+  two-gray-pz.pz:           1.000
+  leaf-pz.pz:               1.000
+  two-color-pz.pz:          1.000
+  robin-grayscale.pz:       1.000
+  tall-pz.pz:               1.000
+  wide-pz.pz:               1.000
+
+  TOTAL pzw:        10.000/10.000
+
+pzh:
+  bald-eagle.pz:            1.000
+  pelicans.pz:              1.000
+  wide-pz-wide.pz:          1.000
+  tall-pz-a-tall-image.pz:  1.000
+  two-gray-pz.pz:           1.000
+  leaf-pz.pz:               1.000
+  two-color-pz.pz:          1.000
+  robin-grayscale.pz:       1.000
+  tall-pz.pz:               1.000
+  wide-pz.pz:               1.000
+
+  TOTAL pzh:        10.000/10.000
+
+pzm:
+  bald-eagle.pz:            1.000
+  pelicans.pz:              1.000
+  wide-pz-wide.pz:          1.000
+  tall-pz-a-tall-image.pz:  1.000
+  two-gray-pz.pz:           1.000
+  leaf-pz.pz:               1.000
+  two-color-pz.pz:          1.000
+  robin-grayscale.pz:       1.000
+  tall-pz.pz:               1.000
+  wide-pz.pz:               1.000
+
+  TOTAL pzm:        10.000/10.000
+
+PROJECT_2_TOTAL: 100.000/100.000
