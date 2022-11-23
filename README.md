@@ -1,5 +1,5 @@
-# uchicago_cs_classes
+# uchicago_classes
 Kameel Khabaz
 
-This contains code that I wrote for my computer science classes 
+This contains code that I wrote for classes 
 at the University of Chicago.
