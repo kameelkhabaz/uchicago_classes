@@ -1,0 +1,102 @@
+% Problem 6.3.10
+close all
+figure()
+Energy = @(Y) [Y(1) * Y(2); Y(1) * Y(1) - Y(2)];
+y1 = linspace(-4,4,20);
+y2 = linspace(-4,4,20);
+[x,y] = meshgrid(y1,y2);
+u = zeros(size(x));
+v = zeros(size(x));
+
+for i = 1:numel(x)
+    Yprime = Energy([x(i); y(i)]);
+    u(i) = Yprime(1);
+    v(i) = Yprime(2);
+end
+quiver(x,y,u,v,2,'r','LineWidth',1.5); figure(gcf)
+xlabel('$y_1$','Interpreter','Latex')
+ylabel('$y_2$','Interpreter','Latex')
+set(gca,'FontSize',25,'FontName','times')
+axis tight equal;
+ax = gca;
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+exportgraphics(gcf,'6.3.10.png','Resolution',600)
+
+%% Conservative Systems and Energy Functions: Problem 1.
+close all
+M = 1;
+L = 1;
+g = 1;
+% Max velocity of pendulum is sqrt(2 * g * hmax)
+maxv = sqrt(2 * g * L);
+figure()
+set(gcf,'Position',[0 0 600 800])
+subplot(2,1,1);
+Energy = @(x,xdot) M*L*(g*(1-cos(x)) + 0.5 * L * xdot^2);
+xyint = [-pi pi -maxv maxv];
+hold on
+fsurf(Energy, xyint);
+fcontour(Energy, xyint,'--','LineWidth',2,'LevelList',[0 .05 .1 .25 .4 1.1 1.5 2 2.5 3]);
+axis tight
+xlabel("$\theta$",'Interpreter','latex')
+ylabel("$\dot{\theta}$",'Interpreter','latex')
+zlabel("$E$",'Interpreter','latex')
+set(gca,'FontSize',30,'FontName','Times')
+
+subplot(2,1,2);
+fcontour(Energy, xyint,'--','LineWidth',2,'LevelList',[0 .05 .1 .25 .4 1.1 1.5 2 2.5 3]);
+xlabel("$\theta$",'Interpreter','latex')
+ylabel("$\dot{\theta}$",'Interpreter','latex')
+hold on
+scatter(0,0,250,'k','filled')
+text(-.75,1.1,'$center$','Interpreter','latex','FontSize',40)
+set(gca,'FontSize',30,'FontName','Times')
+
+exportgraphics(gcf,'Conservative.2.png','Resolution',600)
+
+%% Two-Body Problem
+m = 0.18;
+M = 1;
+G = 1;
+L = 0.1;
+r = linspace(0.1,5,1000);
+rdot = linspace(-5,5,1000);
+rstar = (M+m)*L^2 / (G*M*M*m*m);
+make_2body_plot(m,M,G,L,r,rdot,rstar,"2 Body Problem")
+
+function make_2body_plot(m,M,G,L,r,rdot,rstar,titl)
+    figure()
+    set(gcf,'Position',[0 0 600 800])
+    subplot(2,1,1);
+    Energy = @(r,rdot) -G*M*m/r + (1/2) * ( ((M + m)/(M * m)) * (L^2 / r^2) ...
+                        + ((M*m)/(M+m)) * rdot^2);
+    xyint = [min(r) max(r) min(rdot) max(rdot)];
+    hold on
+    fsurf(Energy, xyint);
+    fcontour(Energy, xyint,'--','LineWidth',2,'LevelList',[-.23 -0.2 -.1 -.05 .2 1.1 1.5 2 2.5 3]);
+    axis tight
+    title("$L = " + L + ", M = " + M + ", m = " + m + "$",'Interpreter','latex')
+    xlabel("$r$",'Interpreter','latex')
+    ylabel("$\dot{r}$",'Interpreter','latex')
+    zlabel("$E$",'Interpreter','latex')
+    set(gca,'FontSize',30,'FontName','Times')
+    scatter3(rstar,0,Energy(rstar,0),100,'r','filled')
+    
+    subplot(2,1,2);
+    fcontour(Energy, xyint,'--','LineWidth',2,'LevelList',[-.23 -.2 -.1 -.05 .2 1.1 1.5 2 2.5 3]);
+    title("$L = " + L + ", M = " + M + ", m = " + m + "$",'Interpreter','latex')
+    
+    % Make arrows on level sets 
+    [x,y] = meshgrid(downsample(r(2:end),50),downsample(rdot,50));
+    drdot = @(r,rdot) ((M+m)./(M*m))^2 * (L^2 ./ (r.^3)) - G*(M+m) ./ (r.^2);
+    quiver(x,y,y,drdot(x,y),1,'r','LineWidth',1.5);
+    xlabel("$\r$",'Interpreter','latex')
+    ylabel("$\dot{r}$",'Interpreter','latex')
+    hold on
+    set(gca,'FontSize',30,'FontName','Times')
+    scatter3(rstar,0,Energy(rstar,0),100,'r','filled')
+    
+    exportgraphics(gcf,titl + ".png",'Resolution',600);
+
+end 
