@@ -1,0 +1,84 @@
+Kameel Khabaz
+Homework 6
+CMSC 15400 
+
+Question 1:
+Assume that an open file descriptor structure is 50 bytes in the OS, and that 
+100 clients have previously connected (i.e. the child processes have 
+terminated). For the two parts below, answer with a non-negative (≥ 0) number 
+of bytes, and a roughly 10-20 word justification.
+
+A. Suppose the “Close(connfd)” line has been omitted from the code for the 
+parent process. How large a memory leak has been created by this omission 
+(i.e. how many bytes linger in the OS without being used)?
+
+If the Close(connfd) command is omitted from the parent process's code, then
+the parent does not close the connfd file structure. Even though the child
+does close the structure, the FD structure is NOT deleted from memory because
+the parent and child processes have different FD tables (the child's table is
+a copy of the parent's table). So the parent's FD table will have 100 entries 
+linking to the connfd FD structures for the 100 clients that have connected,
+and 100 file descriptor structures will be open. Since each FD structure  is 
+50 bytes large, the memory leak is 100 * 50 bytes = 5000 bytes.
+
+B. Now assume we fix the bug from the previous part (so the Close(connfd) is 
+performed by the parent), but we accidentally delete Close(listenfd) in the 
+child process. If another 100 clients connect with this new configuration, how 
+much memory is leaked?
+
+Here the situation is different. The parent now closes the connfd file with
+each new connection, thus removing the entry from the file descriptor table.
+While the child process does not close the file descriptor stucture because
+the "Close(listenfd)" command has been removed from the child process, the 
+child's entire file descriptor table and the corresponding file descriptor 
+structures are removed by the operating system when the child process exits. 
+So, each connfd file descriptor structure that is created is promptly removed 
+after the child services the client. This means that there is no memory leak.
+No memory (0 bytes) is leaked.
+
+Question 2:
+This question refers to the above modified version of the code in textbook 
+Figure 12.15. Modifications were made to lines 18, 24, and 25.
+
+Using the analysis from Section 12.4, fill each entry in the following table 
+with “Yes” or “No” for the code above. In the first column, the notation v.t 
+denotes an instance of variable v residing on the local stack for thread t, 
+where t is either m (main thread), t0 (peer thread 0), or t1 (peer thread 1). 
+This is a modification of Practice Problem 12.6.A.
+
+Variable instance     Referenced by       Referenced by       Referenced by
+                      main thread?        peer thread 0?      peer thread 1?
+cnt.t0                    No                   Yes                 No
+cnt.t1                    No                   No                  Yes
+i.m                       Yes                  Yes                 Yes
+msgs.m                    Yes                  Yes                 Yes
+myid.t0                   No                   Yes                 No
+myid.t1                   No                   No                  Yes
+
+Question 3:
+A. List all pairs of locks/mutexes that Thread 1 can hold, and all pairs of 
+locks/mutexes that Thread 2 can hold.
+
+Thread 1:
+ab
+ac
+bc
+ad
+
+Thread 2:
+dc
+db
+cb
+
+B. Is there overlap between the sets of pairs of locks/mutexes? If yes, are 
+the locks/mutexes (within the pair) locked in the same order?
+There is overlap between the "bc" lock pair for thread 1 and the "cb" lock
+pair for thread 2. The locks within the pair are not locked in the same order.
+
+C. Given your analysis, is there a potential for deadlock (Yes or No)?
+Yes. Because the two threads share a lock pair and the locks in the pair are 
+locked in the opposite order (not in the same order), this presents the 
+potential for deadlock because thread 1 can lock b and thread 2 can lock c. 
+Then, thread 1 is waiting for lock c to be available and thread 2 is waiting 
+for lock b to be available. This is what creates the deadlock as neither 
+thread can proceed as each thread is waiting for the other thread.

@@ -1,0 +1,70 @@
+Kameel Khabaz
+CMSC 15400
+Homework 7
+
+Q1:
+
+A. The user wants to run P1. Is there memory for it, and if so, in what 
+address range will P1 be loaded?
+Yes, there is space in memory for P1 because we konw that address
+ranges 0-4 are free. This means that we can allocate a contiguous span
+of 3 MB (the requirement for a new process) in the lowest possible 
+address of 0-2. The address range is 0-2.
+
+B. The user next wants to run P2. Can P2 be loaded, and if so, in what 
+address range? 
+We now have addresses 3-4 as free and addresses 6-9 as free.
+Yes, P2 can be loaded into memory and will be loaded into the contiguous span
+of 3 MB corresponding to the lowest possible addresses. This means that P2 
+will be loaded into addresses 6-8. So, the address range is 6-8.
+
+C. The user next wants to run P3. Can P3 be loaded, and if so, in what 
+address range?
+We now have addresses 3-4 and 9 as free. In order to laod P3, we need to 
+load it into a contiguous span of 3 MB that is free, but we do not have a 
+contiguous span of 3 MB that is free in memory (we only have a 2 MB span and
+1 MB span). Thus, we cannot load P3. 
+ 
+D. After the OS tries to run P1, P2, and P3, what is the internal 
+fragmentation for each of the processes (P1, P2, and P3), and what is 
+the total internal fragmentation?
+P1 had 3 MB allocated to it but it only requires 1 MB, so the internal
+fragmentation for P1 is 2 MB.
+
+P2 had 3 MB allocated to it but it only requires 2 MB, so the internal
+fragmentation for P2 is 1 MB.
+
+P3 was not loaded to memory.
+
+The total internal fragmentation is 2 MB + 1 MB = 3 MB.
+
+E. After the OS tries to run P1, P2, and P3, what is the external 
+fragmentation? 
+After P1 and P2 were loaded into memory, the external fragmentation is the 
+total amount of unusable memory that we cannot allocate to run a process.
+Here, the external fragmentation is 3 MB because we have 3 MB of memory 
+that are not used overall (addresses 3-4 and 9),and we were not able to 
+load P3 because these 3 MB were not contiguous.
+
+Q2:
+
+A. Please convert the following memory accesses. We have provided you a 
+table that helps you convert logical addresses into physical addresses 
+(“;” is just a column divider). Access can be read (r) or write (w). In the 
+last column, please put “S” for success and “E” for error.
+
+
+Access &                                             Physical   Success
+logical  Segment  Offset          Base      Offset   address      or
+address   bit(s)  bit(s)        (in hex)   (in hex)  (in hex)    Error
+r 0xE5  =   1  | 110 0101   ;     0x36 +     0x65  =   0x9B       (S)
+w 0x4A  =   0  | 100 1010   ;     0xA8 +     0x4A  =   0xF2       (E)
+r 0x37  =   0  | 011 0111   ;     0xA8 +     0x37  =   0xDF       (S)
+
+
+B. Given the architecture above, what is the largest possible size of a 
+segment? You can answer in any of the following forms: 2k bytes or 
+X bytes/KB/MB/GB (where X is a decimal number).
+
+Since we have 7 offset bits to index into a segment, the largest possible 
+size of a segment is 2^7 bytes.

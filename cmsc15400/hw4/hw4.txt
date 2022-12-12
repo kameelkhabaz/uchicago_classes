@@ -1,0 +1,142 @@
+Kameel Khabaz
+Homework 4
+
+Q1:
+
+A:
+We know that B = 4, so b = log2(B) = log2(4) = 2. 
+Also, S = 4, so s = log2(S) = log2(4) = 2.
+Finally, we know that m = 12 because addresses are 12 bits wide.
+Thus, t = m - (s + b) = 12 - (2 + 2) = 12 - 4 = 8.
+
+So, each 12-bit address has t tag bits, s set index bits, 
+and b block offset bits.
+
+So the answer is "ttttttttssbb".
+
+B: 
+Operation      Address      Hit/Miss?       Value 
+Read            0x831         Hit             27
+Read            0x00B         Hit             58
+Read            0x006         Hit             56
+Read            0xFFE         Hit             08
+Read            0x54E         Miss         unknown
+Write           0x54C         Hit             n/a 
+Write           0x007         Hit             n/a
+Read            0x44C         Miss         unknown
+Read            0xFFD         Miss            F1 
+
+
+Q2: 
+Given these assumptions, estimate the miss rates for the following cases and 
+answer the associated questions. You do not need more than 50 words per part.
+
+A. Case 1: Assume the cache is 512 bytes, direct-mapped, with 16-byte cache 
+   blocks. What is the miss rate? 
+    Since there are 16-byte cache blocks, B = 16 and b = 4. 
+    Since the cache is 512 bytes and each block is 16 bytes, there are
+    512 / 16 = 32 sets in the cache. So, S = 32 and s = 5. 
+    In this case, we access x[0][i] and then x[1][i] at each iteration of the
+    loop. Since the array is stored in row-major order and begins at address
+    0x0, x[0][0] is at address 0x0 and x[1][0] is at address 0x200 (128 
+    integers * 4 bytes per integer = 512 bytes per row of array).
+    Since we have 4 block offset bits and 5 set bits (stored in the address in
+    the order tag bits - set bits - block offset bits), each row of the array
+    will start at set 0. This means that after x[0][0] is loaded in the cache,
+    x[1][0] will be a miss and be loaded into the same set in the cache.
+    For each iteration in the loop, each read from memory will be a miss
+    because we are switching between storing 16 bytes of row 0 of x in set 0
+    of the cache and storing 16 bytes of row 1 of x in set 0 of the cache.
+    
+    Eventually, when i = 16, the address of x[0][16] will be 0x10 and address
+    of x[1][16] will be 0x210, both of which correspond to set 1 of the cache.
+    So when the loop reaches this portion, the location of the 16-byte cache
+    blocks for each row will switch from set 0 to set 1 at the same time, 
+    resulting in each read always being a miss.
+ 
+    Going from there, each time the memory address of an element in x 
+    increments the set index bits, it will increment for both rows of x. So
+    subsequent reads from the two rows of x will always return a miss for
+    the entire loop. So the miss rate is 100%. 
+    
+B. Case 2: What is the miss rate if we double the cache size to 1024 bytes?
+    In this case, we have 1024 / 16 = 64 sets in the cache. So, S = 64 and 
+    s = 6. As before, since there are 16-byte cache blocks, B = 16 and b = 4. 
+    Now, when we start the first iteration of the loop, the address of 
+    x[0][0] is 0x0 and the address of x[1][0] is 0x200. Now, x[0][0] is 
+    stored in set 0, and x[1][0] is stored in set 0x20 = 32. So the two rows 
+    are stored in different sets. The reads for i = 0 will both be misses, 
+    since the cache is empty and we are starting the loop.
+
+    When i = 1, x[0][1] is at address 0x4 and x[1][1] is at address 0x204 
+    because an int is 4 bytes. This means that x[0][1] is in set 0 and x[0][1]
+    is in set 0x20 = 32. So this time, the read will be a miss because we 
+    are accessing bytes 4-7 of row 0 and row 1, respectively. 
+    
+    For i = 2 to 3, we will also have hits with each cache read.
+    
+    When i = 4, x[0][4] will be at address 0x10 (byte 16) and x[1][4] will be
+    at address 0x210. This means that x[0][4] is in set 1 now and x[1][4]
+    will be in set 0x21 = 33. So this read will be a miss. Reads i = 5 to 7
+    will be hits because the array elements will stay in set 1 (for row 0 of
+    x) and set 33 (for row 1 of x).
+
+    This means that 25% of reads are misses for each group of 4 elements.
+    This pattern continues throughout the entire loop through the columns
+    of x, so the overall miss rate is 25%. 
+C. Case 3: Now assume the cache is 512 bytes, two-way set associative with 
+   an LRU replacement policy, with 16-byte cache blocks. 
+   What is the cache miss rate?
+    In this case, we have 512 / (16 * 2) = 16 sets in the cache. So S = 16 and 
+    s = 4. As before, since there are 16-byte cache blocks, B = 16 and b = 4.
+
+    x[0][0] is at address 0x0 and x[1][0] is at address 0x200. So x[0][0] is 
+    in set 0 (with tag 0), and x[1][0] is in set 0 (with tag 2).
+    The first read is a miss because the cache is initially empty.
+    Since this cache is two-way set associative (2 lines per set) and 
+    since the addresses for the two rows' initial elements have different tags, 
+    16-byte blocks from both row 0 of x and row 1 of x can be stored in the 2 
+    lines of set 1. 
+    
+    Iterating from i = 1 to i = 3, x[0][i] will stay in set 0, tag 0, and 
+    x[1][i] will stay in set 0, tag 2. Since 16-byte blocks from both rows
+    were already loaded to the cache for the i = 0 read, the data for these 
+    elements is already in the cache and these 3 reads will be hits.
+
+    For i = 4, x[0][4] will be in set 1, tag 0, and x[1][4] will be in set 1,
+    tag 2. This means that the read will produce a miss. Reads i = 5 to 7 will 
+    be hits because the array elements will stay in set 1, tag 0 (for row 0 of 
+    x) and set 1, tag 2 (for row 1 of x). 
+    
+    This means that 25% of reads are misses for each group of 4 elements. The
+    pattern continues throughout the entire loop through the columns of x,
+    resulting in an overall miss rate of 25%.
+    
+D. For Case 3, will a larger cache size help to reduce the miss rate? 
+   Why or why not?
+    A larger cache size means that S (and thus s) will increase, but the block
+    size will stay the same. If s increases, then there is a larger number of
+    sets and there is a larger number of set bits in the memory address.
+    However, each time we load data from memory, we can only load 16 bytes at
+    a time because the cache block size is 16 bytes. This corresponds to four 
+    integer elements in the array. This means that it is not possible to get 
+    a miss rate lower than 25% because that would require us to load more than 
+    4 elements into the cache per time, which would require a larger block 
+    size (and not cache size). So a larger cache size would not help to reduce
+    the miss rate.
+
+E. For Case 3, will a larger block size help to reduce the miss rate? 
+   Why or why not?
+    As indicated above, a larger block size does help to reduce the miss rate.
+    Increasing block size means that B (and also b) increase, so we load more
+    blocks of memory into the cache at a time (and there are more block offset
+    bits in the address). This means that we can load more than 4 integers
+    of the array (which take up 16 bytes, with each integer element taking 
+    up 4 bytes) at a time, so we will get a miss less often. For instance, 
+    if the block size increases to 32 bytes, then we can load 32 bytes a 
+    time into the cache, so we will only get a miss once for every five 
+    reads, corresponding to a 20% miss rate. For the current setup of a 
+    two-way set associative cache with an LRU replacement policy and for 
+    the current code, for a block size of n bytes, the miss rate is 
+    100 * (4 / n) percent. 
+

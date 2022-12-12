@@ -1,0 +1,25 @@
+Kameel Khabaz
+CMSC 15400 
+Homework 5
+
+
+Q1: 
+
+A. The relevant entry in the exception table
+built into the hardware is below. 
+
+Exc# | Exception handler addresses
+-----------------------------------
+0    | 0xC0015200 
+
+B. Here, %eip is the program counter, which tracks the address of the 
+instruction currently being executed at each time. Since %eip is 0x08031000, 
+the CPU starts executing the instructions starting at address 0x08031000. 
+Since the instruction representing “idivl %ebx” is at this address, 
+and %ebx is 0, the instruction at this address is to divide by 0. From the
+circuitry in the CPU, the ALU (arithmetic logic unit) detects a division by
+0. This triggers a lookup in the exception table (which is built in the 
+CPU) at exception number 0 (which indicates a division by 0 error). The hardware 
+gets the exception handler address of 0xC0015200 from the table. The 
+program counter jumps to that address (%eip = 0xC0015200), and the CPU 
+executes the exception handler divideByZero.

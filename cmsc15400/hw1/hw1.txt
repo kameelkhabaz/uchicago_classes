@@ -1,0 +1,20 @@
+Kameel Khabaz 
+HW1
+
+Q1
+foo = 1;
+endian = (char *) &foo == 0 ? 1 : 0;
+This code accesses the value of the byte at the address of the integer foo.
+If that value is 0, then the most significant byte is stored first (means
+big endian). Else, the least significant byte is stored first (meaning little 
+endian).
+
+
+Q2
+A. !!x
+B. !!(~x)
+C. !!(x & 0xFFFF)
+D. !!((~x) & 0xFFFF)  
+E. !!(x & 0xAAAAAAAA)
+F. !!(x & (0xF << ((sizeof(int) - 1) * 8 + 4)))
+

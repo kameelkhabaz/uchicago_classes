@@ -1,0 +1,72 @@
+Kameel Khabaz
+CMSC 15400
+Homework 6
+
+
+
+Q1: 
+
+A.
+
+1 P 16 0
+2 P 23 101
+3 C 19 0
+4 P 8  101
+5 C 8  0
+6 C 10 0
+7 P 26 101
+
+B.
+
+1 P 16 0
+2 P 23 101
+3 C 19 0
+4 C 8  0
+5 C 10 0
+6 P 26 101
+
+After the fork occurs, the parent calls line 23 before the child calls line 19.
+Then the child calls line 19 of the code, as in part A. The steps in the 
+child and parent processes that are in a race with each other 
+(the race condition) are the kill system calls, in which each
+process sends a signal to the other process. In part A, 
+the child sends the signal SIGUSR1 to the parent before the parent sends the 
+signal SIGUSR1 to the child. In part B, however, the parent sends the SIGUSR1
+signal to the child before the child is able to send the signal to the parent.
+This means that the handler1 function runs for the child process. Since 
+forkret = 0 for the child, line 10 runs and then the child process exits
+before getting the chance to send a signal to the parent. 
+The parent then continues and exits. 
+
+C. 
+
+1 P 16 0
+2 P 23 101
+3 C 8  0
+4 C 10 0
+5 P 26 101
+
+The race condition here is that the parent function sends the SIGUSR1 signal
+to the child process before the child process is able to call line 19 of
+the code. So then the child process receives the signal and runs line 8
+in the handler1 function. Then, forkret = 0 for the child, so 
+the child calls line 10 of the code and then exits.
+The parent process then continues the code and exits.
+
+D.
+
+1 P 16 0
+2 C 19 0
+3 P 8  0
+4 P 10 0
+
+The race condition here is that after the fork occurs,
+ the child process finishes executing the
+fork() function, executes line 19 of the code, and then sends the SIGUSR1 
+signal to the parnet process before the parent process finishes executing the
+fork() function. This means that the parent process never sets the value
+of forkret, so forkret = 0 from the intial declaration on line 5. 
+So when handler1 is executed by the parent process,
+forkret = 0 so line 10 is executed and the parent process exits. The
+child process never exits here. 
+

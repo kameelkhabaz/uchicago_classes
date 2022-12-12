@@ -1,0 +1,78 @@
+Kameel Khabaz
+CMSC 15400
+Homework 3
+
+Q1:
+A. Which registers hold program values x, n, result, and mask? 
+    Register %rax holds the value of result because result is returned from the
+    function and, by convention, %rax holds the value that is returned from 
+    a function. The value of the result is also temporarily stored in 
+    register %rcx in line 6 and then returned to register %rax with an OR 
+    operation in line 9 of the assembly code.
+    
+    Register %rdx holds the value of mask. We can tell this because in line 11 
+    of the assembly code, the testq command is used to test if the value of 
+    %rdx (which is mask) is equal to 0. The loop only continues when mask != 0
+    (as shown in line 12 with the jump not equal to command), indicating that 
+    register %rdx holds program values of mask.
+
+    Register %rdi holds the program value x. We see this on line 8
+    of the assembly code because we have R[%rax] = R[%rax] & R[%rdi], which
+    can be interpreted as mask = mask & x. Note that %rax stores the value for
+    mask (and then the quantity (mask & x)) and not for result temporarily 
+    in lines 7 and 8 of the assembly line code. The value of result is 
+    temporarily copied to register %rcx in line 6 and then returned to 
+    register %rax (with an OR operation) in line 9. We also know that 
+    register %rdi holds program value x because by convention,
+    the first argument of a function is stored in register %rdi.
+    
+    Register %rsi holds the program value n. We see this on line 10
+    of the assembly code because we have R[%rdx] = R[%rdx] << R[%rsi], which
+    can be interpreted as mask = mask << n. We also know this because by 
+    convention, the second argument of a function is stored in register %rsi. 
+
+B. What are the initial values of result and mask?
+    From line 3 of the assembly code we see that the initial
+    value of result is 0.
+
+    From line 4 of the assembly code we see that the initial
+    value of mask is 3. 
+C. What is the test condition for mask?
+    As shown in lines 11/12 of the assembly code the test for mask is that
+    mask != 0. The loop only continues if the value of mask is not equal to 0.  
+D. How does mask get updated?
+    Mask gets updated on line 10 of the assembly code when it is shifted left
+    by n bites. So R[%rdx] = R[%rdx] << R[%rsi] indicates the command
+    mask = mask << n (or mask <<= n), which updates mask. 
+E. How does result get updated?
+    Result gets updated in the operations between lines 6 and 9. Here we have
+    the C command result = result | (mask & x) (or result |= (mask & x)).
+F. Fill in all the missing parts of the C code, by providing 
+   the entire contents of the 1 , 2, etc blanks.
+
+    Please see the filled in code below: 
+
+    long loop(long x, long n) {
+        long result = 0;
+        long mask;
+        for (mask = 3; mask != 0; mask = mask << n) {
+            result |= (mask & x);
+        }
+        return result; 
+    }
+
+Q2:
+
+
+long funcQ(long x, long y) { 
+    return (3 * y) + x;
+}
+
+long funcP(long r, long s, long t) {
+    if (s > 0) {
+        return funcQ(t, s) + r;
+    } else {
+        return funcQ(s, r) + t;
+    }
+}
+

@@ -1,0 +1,55 @@
+Kameel Khabaz
+CMSC 15400 Homework 2
+
+Q1
+
+A. (%rcx) = M[0x220] = 0x09
+     Value: 0x09, Mode: Indirect
+B. 0x13(%rax) = M[0x13 +  0x210] = M[0x223] 
+    Value: unknown, Mode: The endianness is unspecified. We know that the value
+            at address 0x220 (0x09) occupies 8 bytes of storage, but we do not
+            know the endianness, so we don't know what is stored at address 
+            0x223 (and the 8 bytes following that address) in memory. 
+C. 560 = M[560] = M[0x230] = 0x54
+    Value: 0x54, Mode: Absolute
+D. (%rax,%rsi) = M[0x210 + 0x8] = M[0x218] = 0xBC
+    Value: 0xBC, Mode: Indexed
+E. 0x108(%rdi,%rdx,0x20) = M[0x108 + R[%rdi] + R[%rdx] * 0x20] = 
+    M[0x108 + 0x100 + 0x1 * 0x20] = M[0x228] = 0x42
+    Value: 0x42, Mode: Scaled Indexed
+F. $251 = 251 = 0xFB
+    Value: 0xFB, Mode: Immediate
+G. 0x08(,%rsi,0x45) = M[0x08 + R[%rsi] * 0x45] = M[0x08 + 0x8 * 0x45] = 
+    M[0x230] = 0x54
+    Value: 0x54, Mode: Scaled Indexed      
+
+
+Q2: 
+A. incq %rsi => 0x8 + 1 = 0x9
+    Destination: %rsi, Value: 0x9
+B. xorq %rbx,%rbx => 0 (anything xor with itself is 0)
+    Destination: %rbx, Value: 0x0
+C. decq (%rax) => M[%rax] = M[%rax] - 1 => M[0x210] = 0xAB - 1 = 0xAA
+    Destination: 0x210, Value: 0xAA
+D. subq 0x228,%rdi => R[%rdi] = R[%rdi] - M[0x228] = 0x100 - 0x42 = 0xBE
+    Destination: %rdi, Value: 0xBE
+E. notq %rdx => R[%rdx] = ~R[%rdx] = ~0x1 = 0xFFFF FFFF FFFF FFFE 
+    Destination: %rdx, Value: 0xFFFF FFFF FFFF FFFE
+F. shlq %rsi,(%rcx) => M[R[%rcx]] = M[R[%rcx]] << R[%rsi]
+                    => M[0x220] = 0x09 << 0x8 = 0x900
+    Destination: 0x220, Value: 0x900
+G. subq $0x100,%rax => R[%rax] = R[%rax] - 0x100 = 0x210 - 0x100 = 0x110
+    Destination: %rax, Value: 0x110
+H. imulq %rdi,(%rax,%rsi) => M[R[%rax] + R[%rsi]] = M[R[%rax] + R[%rsi]] * R[%rdi]
+                          => M[0x218] = M[0x218] * 0x100 = 0xBC * 0x100 = 0xBC00
+    Destination: 0x218, Value: 0xBC00
+I. orq (%rcx),%rax => R[%rax] = R[%rax] | M[R[%rcx]] = 0x210 | 0x09 = 0x219
+    Destination: %rax, Value: 0x219
+J. shrq %rdx,(%rdi,%rsi,37) => M[R[%rdi] + 37 * R[%rsi]] = 
+                               M[R[%rdi] + 37 * R[%rsi]] >>L R[%rdx]
+                            => M[0x100 + 37 * 0x8] = 
+                               M[0x100 + 37 * 0x8] >>L 0x1
+                            => M[0x228] = M[0x228] >>L 0x1
+                            => M[0x228] = 0x42 >>L 0x1 = 0x21
+    Destination: 0x228, Value: 0x21
+
