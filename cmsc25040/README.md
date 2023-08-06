@@ -1,1 +1,1 @@
-# **CMSC 25040**: Introduction to Computer Vision
+**# CMSC 25040**: Introduction to Computer Vision
